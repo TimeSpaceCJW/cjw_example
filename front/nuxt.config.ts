@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   app:{
     buildAssetsDir: "_nuxt",
     head: {
-      title: "cjw_example",
+      title: "상품관리 ADMIN",
       htmlAttrs: { lang: "ko" },
       charset: "utf-8",
       link: [
@@ -36,3 +36,4 @@ export default defineNuxtConfig({
   vite: {
   },
 });
+
