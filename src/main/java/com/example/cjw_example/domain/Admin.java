@@ -9,6 +9,7 @@ import lombok.*;
 import java.nio.file.FileStore;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Admin {
@@ -28,4 +29,5 @@ public class Admin {
         this.name = name;
         this.deptName = deptName;
     }
+
 }

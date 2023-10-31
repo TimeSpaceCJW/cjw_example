@@ -1,22 +1,52 @@
 package com.example.cjw_example.service;
 
-import com.example.cjw_example.service.dto.AdminRequestDTO;
-import com.example.cjw_example.service.dto.AdminResponseDTO;
+import com.example.cjw_example.domain.Admin;
+import com.example.cjw_example.exception.ResourceNotFoundException;
+import com.example.cjw_example.repository.AdminRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface AdminService {
+@AllArgsConstructor
+@Service
+public class AdminService {
 
-    public void saveAdmin(AdminRequestDTO adminDto);
+    private AdminRepository adminRepository;
 
-    public List<AdminResponseDTO> getAdminList(Integer pageNum);
+    // 관리자 전체 조회
+    public List<Admin> findAll() {
+        return adminRepository.findAll();
+    }
 
-    public AdminRequestDTO getId(Long id);
+    // 관리자 단일조회
+    public Admin findOne(Long id) {
+        return adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+    }
 
-    public void deleteId(Long id);
+    // 관리자 저장
+    @Transactional
+    public Admin save(Admin admin) {
+        return adminRepository.save(admin);
+    }
 
-    public List<AdminResponseDTO> searchId(String keyword);
+    // 관리자 업데이트
+    @Transactional
+    public Admin update(Long id, Admin newAdmin) {
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+        admin.setName(newAdmin.getName());
+        admin.setDeptName(newAdmin.getDeptName());
 
-    public void updateId(Long id, AdminRequestDTO dto);
+        return adminRepository.save(admin);
+    }
+
+    // 관리자 삭제
+    @Transactional
+    public void delete(Long id) {
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+        adminRepository.delete(admin);
+    }
+
 
 }
