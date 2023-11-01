@@ -12,7 +12,7 @@ const { data : admin, pending, error } = await useFetchApi('/admin')
 
         <p v-if="pending">Fetching...</p>
         <pre v-else-if="error">관리자정보 조회 불가 : {{ error.data }}</pre>
-        <table v-else class="admin">
+        <table v-else>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">관리자명</th>

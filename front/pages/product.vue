@@ -12,12 +12,12 @@ const { data : product, pending, error } = await useFetchApi('/product')
 
         <p v-if="pending">Fetching...</p>
         <pre v-else-if="error">상품 조회 불가 : {{ error.data }}</pre>
-        <table v-else class="product">
+        <table v-else>
             <tr>
                 <th scope="col">ID</th>
-                    <th scope="col">상품명</th>
-                        <th scope="col">상품 상세정보</th>
-                            <th scope="col">금액</th>
+                <th scope="col">상품명</th>
+                <th scope="col">상품 상세정보</th>
+                <th scope="col">금액</th>
             </tr>
             <tr v-for="item in product">
                 <td>{{ item.id }}</td>
