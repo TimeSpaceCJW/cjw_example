@@ -36,7 +36,7 @@ public class AdminService {
     public Admin update(Long id, Admin newAdmin) {
         Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
         admin.setName(newAdmin.getName());
-        admin.setDeptName(newAdmin.getDeptName());
+        admin.setDeptname(newAdmin.getDeptname());
 
         return adminRepository.save(admin);
     }

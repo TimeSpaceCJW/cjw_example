@@ -1,9 +1,6 @@
 package com.example.cjw_example.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.nio.file.FileStore;
@@ -11,23 +8,24 @@ import java.nio.file.FileStore;
 @Getter
 @Setter
 @Entity
+@Table(name = "admin")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Admin {
 
     @Id @GeneratedValue
-    @Column(name = "EMP_ID")
+    @Column(name = "id")
     private Long id;
 
-    @Column(length = 40, nullable = false)
+    @Column(name = "name", length = 40, nullable = false)
     private String name;
 
-    @Column(length = 40, nullable = false)
-    private String deptName;
+    @Column(name= "deptname", length = 40, nullable = false)
+    private String deptname;
 
     @Builder
-    public Admin(String name, String deptName) {
+    public Admin(String name, String deptname) {
         this.name = name;
-        this.deptName = deptName;
+        this.deptname = deptname;
     }
 
 }
