@@ -1,7 +1,6 @@
 package com.example.cjw_example.controller;
 
 import com.example.cjw_example.domain.Admin;
-import com.example.cjw_example.repository.AdminRepository;
 import com.example.cjw_example.service.AdminService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
