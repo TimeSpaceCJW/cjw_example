@@ -2,37 +2,37 @@
 
 import { useFetchApi} from "~/composables/useFetchApi";
 
-interface ProductData {
-    id: number;
-    name: string;
-    detail: string;
-    price: string;
-}
-
-const productItem = reactive<ProductData>({
-    productId: "",
-    productName: "",
-    productDetail: "",
-    productPrice: "",
-});
-
 const onProductDetail = async (id: string | string[]) => {
     const { data, error } = await useFetchApi(
-        `/productdetail/${productItem.id}`
+        `/productdetail/${route.params.id as string}`
     );
 
     const productDetail = ref<ProductData>();
     productDetail.value = data.value as ProductData;
 
     if(productDetail) {
-        productItem.productId = productDetail.value.id;
-        productItem.productName = productDetail.value.name;
-        productItem.productDetail = productDetail.value.detail;
-        productItem.productPrice = productDetail.value.price;
+        productItem.id = productDetail.value.id;
+        productItem.name = productDetail.value.name;
+        productItem.detail = productDetail.value.detail;
+        productItem.price = productDetail.value.price;
     }
 };
 
+interface ProductData {
+    id: string;
+    name: string;
+    detail: string;
+    price: string;
+}
+const route =useRoute();
+const productItem = reactive<ProductData>({
+    id: "",
+    name: "",
+    detail: "",
+    price: "",
+});
 
+console.log(productItem.id);
 
 </script>
 
