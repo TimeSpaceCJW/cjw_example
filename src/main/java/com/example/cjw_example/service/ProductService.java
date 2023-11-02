@@ -19,6 +19,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Product findOne(Long id) {
+        return productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
+    }
+
     @Transactional
     public Product save(Product product) {
         return productRepository.save(product);

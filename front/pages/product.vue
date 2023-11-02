@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useFetchApi} from "~/composables/useFetchApi";
 
-const { data : product, pending, error } = await useFetchApi('/product')
+    import { useFetchApi } from "~/composables/useFetchApi";
+
+    const { data : product, pending, error } = await useFetchApi('/product')
 </script>
 
 <template>
-    <NuxtExampleLayout repo="nuxt/examples" example="advanced/use-custom-fetch-composable">
         <h1 class="text-xl opacity-50">
             ADMIN 상품 관리
         </h1>
-
+        <NuxtLink to="/productwrite"><button>등록</button></NuxtLink>
         <p v-if="pending">Fetching...</p>
         <pre v-else-if="error">상품 조회 불가 : {{ error.data }}</pre>
         <table v-else>
@@ -21,12 +21,12 @@ const { data : product, pending, error } = await useFetchApi('/product')
             </tr>
             <tr v-for="item in product">
                 <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
+                <td><NuxtLink to="/productdetail/1">{{ item.name }}</NuxtLink></td>
+                <!-- 다른 방식으로 데이터를 보내야할듯한데... -->
                 <td>{{ item.detail }}</td>
                 <td>{{ item.price }}</td>
             </tr>
         </table>
-    </NuxtExampleLayout>
 </template>
 
 <style scoped>

@@ -30,6 +30,7 @@ export default defineNuxtConfig({
     "@invictus.codes/nuxt-vuetify",
   ],
   nitro: {
+    serveStatic: true,
   },
   vuetify: {
   },
